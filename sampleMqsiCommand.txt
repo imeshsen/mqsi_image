@@ -9,3 +9,8 @@ docker run \
   -b /bars/dfcc.bar \
   -skipWSErrorCheck
 
+
+
+
+
+mqsicreatebar.exe -data .\DFCC_ACE_COLLATERELS\ -a DFCC_ACE_COLLATERALS -b dfcc.bar -l .\ExceptionManagerRest\ -l .\Logger\ -skipWSErrorCheck
