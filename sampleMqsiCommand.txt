@@ -1,0 +1,11 @@
+docker run \
+  -v /home/imesh/myStuff/git/ace-workspace:/workspace \
+  -v /tmp/bars:/bars \
+  mqsicreatebar:12.0.3.0 \
+  -data /workspace \
+  -a DFCC_ACE_CUSTOMER \
+  -l ExceptionManagerRest \
+  -l Logger \
+  -b /bars/dfcc.bar \
+  -skipWSErrorCheck
+
