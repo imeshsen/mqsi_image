@@ -1,0 +1,1 @@
+https://github.com/ace-hello-world/infrastructure/tree/master/cicd/image/mqsicreatebar
