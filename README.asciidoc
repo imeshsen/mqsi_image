@@ -35,7 +35,7 @@ your workspace should look like this:
 ├── Dockerfile
 ├── README.asciidoc
 ├── deps
-│   └── 12.0.3.0-ACE-LINUX64-DEVELOPER.tar.gz
+│   └── 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
 └── mqsicreatebar.sh
 ----
 
@@ -43,8 +43,8 @@ The `Dockerfile` takes a build argument, `ACE_INSTALL`, to refer to the install 
 
 [source,bash]
 ----
-docker build -t mqsicreatebar:12.0.3.0 \
-        --build-arg ACE_INSTALL=12.0.3.0-ACE-LINUX64-DEVELOPER.tar.gz .
+docker build -t mqsicreatebar:12.0.12.13 \
+        --build-arg 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz .
 ----
 
 == Smoke Test it out
@@ -55,7 +55,7 @@ Running
 
 [source,bash]
 ----
-docker run mqsicreatebar:12.0.3.0
+docker run mqsicreatebar:12.0.12.13
 ----
 
 should output:
