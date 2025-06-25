@@ -43,8 +43,7 @@ The `Dockerfile` takes a build argument, `ACE_INSTALL`, to refer to the install 
 
 [source,bash]
 ----
-docker build -t mqsicreatebar:12.0.12.13 \
-        --build-arg 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz .
+docker build -t mqsicreatebar --build-arg ACE_INSTALL=12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz .
 ----
 
 == Smoke Test it out
@@ -55,7 +54,7 @@ Running
 
 [source,bash]
 ----
-docker run mqsicreatebar:12.0.12.13
+docker run mqsicreatebar
 ----
 
 should output:
@@ -151,7 +150,7 @@ mkdir bars
 docker run \
     -v /tmp/HelloWorld:/HelloWorld \
     -v /tmp/bars:/bars \
-    mqsicreatebar:12.0.12.13 \
+    mqsicreatebar \
     -data /HelloWorld \
     -a HelloWorld \
     -b /bars/helloworld.bar \
