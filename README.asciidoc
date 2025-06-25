@@ -151,7 +151,7 @@ mkdir bars
 docker run \
     -v /tmp/HelloWorld:/HelloWorld \
     -v /tmp/bars:/bars \
-    mqsicreatebar:12.0.3.0 \
+    mqsicreatebar:12.0.12.13 \
     -data /HelloWorld \
     -a HelloWorld \
     -b /bars/helloworld.bar \
