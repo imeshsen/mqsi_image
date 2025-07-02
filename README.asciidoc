@@ -32,11 +32,11 @@ your workspace should look like this:
 [source,bash,]
 ----
 .
-├── Dockerfile
-├── README.asciidoc
-├── deps
-│   └── 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
-└── mqsicreatebar.sh
+â”œâ”€â”€ Dockerfile
+â”œâ”€â”€ README.asciidoc
+â”œâ”€â”€ deps
+â”‚Â Â  â””â”€â”€ 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
+â””â”€â”€ mqsicreatebar.sh
 ----
 
 The `Dockerfile` takes a build argument, `ACE_INSTALL`, to refer to the install image within the `deps` folder. To build the image, you can run:
@@ -103,7 +103,7 @@ You may get a launcher error at the above output, such as
 [source,bash,attributes]
 ----
 Launcher error: GDBus proxy init failed to connect org.eclipse.swt:/org/eclipse/swt on org.eclipse.swt.
-Launcher error: GDBus gdbus_proxy init failed for reason: Failed to execute child process “dbus-launch” (No such file or directory)
+Launcher error: GDBus gdbus_proxy init failed for reason: Failed to execute child process â€œdbus-launchâ€ (No such file or directory)
 Launcher Error. Could not init gdbus proxy. Bug? Launching eclipse without opening files passed in.
 SWT SessionManagerDBus: Failed to connect to org.gnome.SessionManager: Failed to execute child process ?dbus-launch? (No such file or directory)
 SWT SessionManagerDBus: Failed to connect to org.xfce.SessionManager: Failed to execute child process ?dbus-launch? (No such file or directory)
