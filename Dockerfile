@@ -1,31 +1,49 @@
-FROM golang:latest as builder
+FROM ubuntu:22.04
 
-ARG ACE_INSTALL
-WORKDIR /opt/ibm
-COPY deps/$ACE_INSTALL .
+# Install runtime dependencies required by ACE
+RUN apt-get update && apt-get install -y \
+    bash \
+    gzip \
+    tar \
+    libatomic1 \
+    libx11-6 \
+    libxext6 \
+    libxtst6 \
+    libxi6 \
+    libglib2.0-0 \
+    libnss3 \
+    libsm6 \
+    libice6 \
+    libxt6 \
+    libxrender1 \
+    libxrandr2 \
+    libxfixes3 \
+    libxcursor1 \
+    libxinerama1 \
+    libfontconfig1 \
+    libfreetype6 \
+    libasound2 \
+    libicu70 \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir ace-12
-RUN tar -xzf $ACE_INSTALL --absolute-names \
-    --exclude ace-12.\*/server/bin/TADataCollector.sh \
-    --exclude ace-12.\*/server/transformationAdvisor/ta-plugin-ace.jar \
-    --strip-components 1 \
-    --directory /opt/ibm/ace-12
+WORKDIR /ibm
 
-FROM centos:8
+# Copy and extract ACE
+COPY deps/12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz .
 
-WORKDIR /opt/ibm
+COPY entrypoint.sh /entrypoint.sh
 
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*.repo && \
-    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*.repo
+RUN chmod +x /entrypoint.sh
 
-RUN yum -y update && \
-    yum install -y xorg-x11-server-Xvfb gtk3 libXtst && \
-    yum clean all
+RUN mkdir ace-12 && \
+    tar -xzf 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz \
+        --strip-components=1 -C ace-12 && \
+    rm 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
 
-COPY --from=builder /opt/ibm/ace-12 /opt/ibm/ace-12
+# Accept license and set up registry
+RUN ./ace-12/ace make registry global accept license silently
 
-RUN /opt/ibm/ace-12/ace make registry global accept license silently 
+RUN echo 'source $PWD/ace-12/server/bin/mqsiprofile' >> ~/.bashrc 
 
-COPY mqsicreatebar.sh /usr/bin/mqsicreatebar.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
-ENTRYPOINT [ "/usr/bin/mqsicreatebar.sh" ]
