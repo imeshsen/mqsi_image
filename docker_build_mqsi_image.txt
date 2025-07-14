@@ -1,0 +1,2 @@
+docker build -t mqsicreatebar:12.0.3.0 \
+        --build-arg ACE_INSTALL=12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz .
