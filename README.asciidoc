@@ -32,11 +32,11 @@ your workspace should look like this:
 [source,bash,]
 ----
 .
-â”œâ”€â”€ Dockerfile
-â”œâ”€â”€ README.asciidoc
-â”œâ”€â”€ deps
-â”‚Â Â  â””â”€â”€ 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
-â””â”€â”€ mqsicreatebar.sh
+Dockerfile
+README.asciidoc
+deps
+12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
+mqsicreatebar.sh
 ----
 
 The `Dockerfile` takes a build argument, `ACE_INSTALL`, to refer to the install image within the `deps` folder. To build the image, you can run:
