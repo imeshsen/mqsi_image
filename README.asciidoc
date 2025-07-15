@@ -77,45 +77,6 @@ Command Options:
 
 ----
 
-[NOTE]
-====
-You may get a launcher error at the above output, such as
-[source,bash,attributes]
-----
-Launcher error: GDBus proxy init failed to connect org.eclipse.swt:/org/eclipse/swt on org.eclipse.swt.
-Launcher error: GDBus gdbus_proxy init failed for reason: Failed to execute child process â€œdbus-launchâ€ (No such file or directory)
-Launcher Error. Could not init gdbus proxy. Bug? Launching eclipse without opening files passed in.
-SWT SessionManagerDBus: Failed to connect to org.gnome.SessionManager: Failed to execute child process ?dbus-launch? (No such file or directory)
-SWT SessionManagerDBus: Failed to connect to org.xfce.SessionManager: Failed to execute child process ?dbus-launch? (No such file or directory)
-no link files found at location:/opt/ibm/ace-12/tools/links
-----
-
-you can ignore these errors.
-
-====
-
-== Functional test it out
-
-To do a real test, we can create a ACE BAR file from the hello-world application, link:https://github.com/ace-hello-world/HelloWorld.git[]. 
-
-We can run the functional test from the `/tmp` directory: 
-
-.Create the BAR file
-
-. Change working directory to `/tmp`
-+
-[source,bash]
-----
-cd /tmp
-----
-
-. Clone the repo, link:https://github.com/ace-hello-world/HelloWorld.git[]
-+
-[source,bash]
-----
-git clone https://github.com/ace-hello-world/HelloWorld.git
-----
-
 . Make a directory to keep the generated BAR
 +
 [source,bash]
