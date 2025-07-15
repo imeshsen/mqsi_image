@@ -17,24 +17,7 @@ It sets up a `ENTRYPOINT` for the `mqsicreatebar` command link:mqsicreatebar.sh[
 
 Download a copy of __Linux install image__ of **ACE for Developer**, from link:https://www-01.ibm.com/marketing/iwm/iwm/web/pickUrxNew.do?source=swg-wmbfd[ACE for Developer]. 
 
-Clone this repo. Copy the install image in the `deps` folder. For example, if downloaded version `12.0.3.0` of **IBM App Connect Enterprise for Developers**, and run
-
-[source,bash,]
-----
-tree .
-----
-
-your workspace should look like this:
-
-[source,bash,]
-----
-.
-Dockerfile
-README.asciidoc
-deps
-12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz
-mqsicreatebar.sh
-----
+Clone this repo. Copy the install image in the `deps` folder. For example, if downloaded version `12.0.12.13` of **IBM App Connect Enterprise for Developers**
 
 The `Dockerfile` takes a build argument, `ACE_INSTALL`, to refer to the install image within the `deps` folder. To build the image, you can run:
 
