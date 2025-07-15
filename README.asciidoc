@@ -1,8 +1,5 @@
 = `mqsicreatebar` docker image
-:icons: font
-:toc:
-:experimental:
-:source-highlighter: highlightjs
+
 
 Inspired by
 
