@@ -1,1 +1,6 @@
 docker run --rm -v /home/imesh/myStuff/ibmovride:/app ibmint:latest apply overrides /app/overrides.txt --input-bar-file /app/MyIntegrationTestProject.bar --output-bar-file /app/MyIntegrationTestProject_updated.bar
+
+override file.............
+
+gen.DFCC_ACE_COLLATERALS#baseURL=http://uat.server.com:9090/irf-transact-web/api/v1.0.0
+ExceptionManagerRest.ExManRest#File Output.outputDirectory=/home/aceuser/logs/uat/
