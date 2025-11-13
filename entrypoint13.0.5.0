@@ -1,0 +1,3 @@
+#!/bin/bash
+source /ibm/ace-13/server/bin/mqsiprofile
+exec "$@"

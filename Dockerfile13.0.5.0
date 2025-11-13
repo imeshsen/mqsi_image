@@ -1,0 +1,33 @@
+FROM ubuntu:22.04
+
+# Install only required ACE runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash gzip tar libatomic1 libx11-6 libxext6 libxtst6 libxi6 \
+    libglib2.0-0 libnss3 libsm6 libice6 libxt6 libxrender1 \
+    libxrandr2 libxfixes3 libxcursor1 libxinerama1 libfontconfig1 \
+    libfreetype6 libasound2 libicu70 ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /ibm
+
+# Copy ACE 13 tarball
+COPY deps/13.0.5.0-ACE-LINUX64-EVALUATION.tar.gz .
+
+# Extract ACE 13 and clean unnecessary files in one layer
+RUN mkdir ace-13 && \
+    tar -xzf 13.0.5.0-ACE-LINUX64-EVALUATION.tar.gz --strip-components=1 -C ace-13 && \
+    rm 13.0.5.0-ACE-LINUX64-EVALUATION.tar.gz && \
+    # Remove docs, samples, tools, test to reduce size
+    rm -rf ace-13/tools ace-13/samples ace-13/docs ace-13/test
+
+# Accept license and set up registry
+RUN _JAVA_OPTIONS="-Xint" ./ace-13/ace make registry global accept license silently
+
+# Update bash profile
+RUN echo 'source $PWD/ace-13/server/bin/mqsiprofile' >> ~/.bashrc
+
+# Copy entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
