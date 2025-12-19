@@ -31,9 +31,9 @@ WORKDIR /ibm
 # Copy and extract ACE
 COPY deps/12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz .
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /ibm/entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /ibm/entrypoint.sh
 
 RUN mkdir ace-12 && \
     tar -xzf 12.0.12.13-ACE-LINUX64-DEVELOPER.tar.gz \
@@ -45,5 +45,5 @@ RUN ./ace-12/ace make registry global accept license silently
 
 RUN echo 'source $PWD/ace-12/server/bin/mqsiprofile' >> ~/.bashrc 
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/ibm/entrypoint.sh"]
 
